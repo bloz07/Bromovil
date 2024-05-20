@@ -130,5 +130,7 @@ dist
 .pnp.*
 
 #playwright report files
-playwright-report/
-test-results/
+playwright-report/*
+!playwright-report/.keep
+test-results/*
+!test-results/.keep
