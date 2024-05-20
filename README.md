@@ -11,9 +11,11 @@ git clone https://github.com/bloz07/Bromovil.git
 ```bash
 npm install
 ```
-3. Cambiar la variable: *∼files∼* por la ruta del repositorio en los archivos:
+3. Cambiar la variable: *files* por la ruta del repositorio en los archivos:
 ```bash
-.../tests/TP001_RequestBlocking/TC01_UserIsAbleToRequestBlocking.spec.ts y
+.../tests/TP001_RequestBlocking/TC01_UserIsAbleToRequestBlocking.spec.ts
+```
+```bash
 .../tests/TP01_RequestBlocking/TC02_UserIsUnableToRequestBlocking.spec.ts
 ```
 4. Ejecutar las pruebas
