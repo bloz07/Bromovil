@@ -7,22 +7,22 @@ Pruebas de automatización del formulario para reportar robo o extravío de tel�
 ```bash
 git clone https://github.com/bloz07/Bromovil.git
 ```
-2. Instalar dependencias del proyecto
+2. Instalar dependencias del proyecto:
 ```bash
 npm install
 ```
-3. Cambiar la variable: *files* por la ruta del repositorio en los archivos:
+3. Cambiar la variable: **repoPath** por la ruta del repositorio en los archivos:
 ```bash
 .../tests/TP001_RequestBlocking/TC01_UserIsAbleToRequestBlocking.spec.ts
 ```
 ```bash
 .../tests/TP01_RequestBlocking/TC02_UserIsUnableToRequestBlocking.spec.ts
 ```
-4. Ejecutar las pruebas
+4. Ejecutar las pruebas:
 ```bash
 npm run test 
 ```
-5. Visualizar reporte en el navegador
+5. Visualizar reporte en el navegador:
 ```bash
 npm run report
 ```

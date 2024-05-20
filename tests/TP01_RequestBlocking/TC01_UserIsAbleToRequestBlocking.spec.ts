@@ -1,6 +1,7 @@
 import  {test} from '@playwright/test'
 import path from 'path'
-const files = "/Users/maniak/Documents/Bromovil-repo/resources"
+const repoPath = "/Users/maniak/Documents/Bromovil-repo/"
+const files = path.join(repoPath,"resources")
 
 test.beforeEach(async({page}) => {
   await page.goto('https://bromovil.com/')  
