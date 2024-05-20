@@ -9,10 +9,9 @@ test.beforeEach(async({page}) => {
 })
 
 /* 
-/* Necesito datos de un cliente real para este escenario.
 /* Comentado el paso para darle click al botón Enviar y revisar la respuesta
 */
-test('SC 01 - User is able to request phone blocking', async ({page}) => {
+test('SC 01 - User is unable to request phone blocking without being a customer', async ({page}) => {
   await page.getByPlaceholder('Ej: Luis Andres Corona').fill("Bárbara Lozada")
   await page.getByPlaceholder('Ej: ejemplo@ejemplo.com').fill("barbara.lozada94@gmail.com")
   await page.getByPlaceholder('Ej: 3318482390').fill("3313116979")
@@ -24,8 +23,15 @@ test('SC 01 - User is able to request phone blocking', async ({page}) => {
   //await page.getByRole('heading', { name: 'Listo' }).isVisible()
 });
 
+//Formulario vacío
+test('SC 02 - User is unable to request phone blocking with empty form', async ({page}) => {
+  await page.getByRole('button', { name: 'Enviar' }).click()
+  await page.getByText('!').isVisible()
+  await page.getByRole('heading', { name: 'Nombre requerido' }).isVisible()
+});
+
 //Se llenan todos los campos, excepto el nombre
-test('SC 02 - User is unable to request phone blocking with empty name', async ({page}) => {
+test('SC 03 - User is unable to request phone blocking with empty name', async ({page}) => {
   await page.getByPlaceholder('Ej: ejemplo@ejemplo.com').fill("barbara.lozada94@gmail.com")
   await page.getByPlaceholder('Ej: 3318482390').fill("3313116979")
   await page.getByPlaceholder('a 17 digítos').fill("865295052967817")
@@ -38,7 +44,7 @@ test('SC 02 - User is unable to request phone blocking with empty name', async (
 });
 
 //Se llenan todos los campos, excepto el correo electrónico
-test('SC 03 - User is unable to request phone unlocking with empty email', async ({page}) => {
+test('SC 04 - User is unable to request phone blocking with empty email', async ({page}) => {
   await page.getByPlaceholder('Ej: Luis Andres Corona').fill("Bárbara Lozada")
   await page.getByPlaceholder('Ej: 3318482390').fill("3313116979")
   await page.getByPlaceholder('a 17 digítos').fill("865295052967817")
@@ -51,7 +57,7 @@ test('SC 03 - User is unable to request phone unlocking with empty email', async
 });
 
 //Se llenan todos los campos, excepto el número celular
-test('SC 04 - User is unable to request phone unlocking', async ({page}) => {
+test('SC 05 - User is unable to request phone blocking with empty phone number', async ({page}) => {
   await page.getByPlaceholder('Ej: Luis Andres Corona').fill("Bárbara Lozada")
   await page.getByPlaceholder('Ej: ejemplo@ejemplo.com').fill("barbara.lozada94@gmail.com")
   await page.getByPlaceholder('a 17 digítos').fill("865295052967817")
@@ -64,7 +70,7 @@ test('SC 04 - User is unable to request phone unlocking', async ({page}) => {
 });
 
 //Se llenan todos los campos, excepto el IMEI
-test('SC 05 - User is unable to request phone blocking with empty IMEI', async ({page}) => {
+test('SC 06 - User is unable to request phone blocking with empty IMEI', async ({page}) => {
   await page.getByPlaceholder('Ej: Luis Andres Corona').fill("Bárbara Lozada")
   await page.getByPlaceholder('Ej: ejemplo@ejemplo.com').fill("barbara.lozada94@gmail.com")
   await page.getByPlaceholder('Ej: 3318482390').fill("3313116979")
@@ -77,7 +83,7 @@ test('SC 05 - User is unable to request phone blocking with empty IMEI', async (
 });
 
 //Se llenan todos los campos, excepto la identificación
-test('SC 06 - User is unable to request phone blocking with no ID', async ({page}) => {
+test('SC 07 - User is unable to request phone blocking with no ID', async ({page}) => {
   await page.getByPlaceholder('Ej: Luis Andres Corona').fill("Bárbara Lozada")
   await page.getByPlaceholder('Ej: ejemplo@ejemplo.com').fill("barbara.lozada94@gmail.com")
   await page.getByPlaceholder('Ej: 3318482390').fill("3313116979")
@@ -90,7 +96,7 @@ test('SC 06 - User is unable to request phone blocking with no ID', async ({page
 });
 
 //Se llenan todos los campos, excepto el ticket
-test('SC 07 - User is unable to request phone blocking with no ticket', async ({page}) => {
+test('SC 08 - User is unable to request phone blocking with no ticket', async ({page}) => {
   await page.getByPlaceholder('Ej: Luis Andres Corona').fill("Bárbara Lozada")
   await page.getByPlaceholder('Ej: ejemplo@ejemplo.com').fill("barbara.lozada94@gmail.com")
   await page.getByPlaceholder('Ej: 3318482390').fill("3313116979")
@@ -102,8 +108,8 @@ test('SC 07 - User is unable to request phone blocking with no ticket', async ({
   await page.getByRole('heading', { name: 'IMEI requerido' }).isVisible()
 });
 
-//IMEI inválido
-test('SC 08 - User is unable to request phone blocking with invalid IMEI', async ({page}) => {
+//IMEI con caracteres especiales
+test('SC 12 - User is unable to request phone blocking with invalid IMEI', async ({page}) => {
   await page.getByPlaceholder('Ej: Luis Andres Corona').fill("Bárbara Lozada")
   await page.getByPlaceholder('Ej: ejemplo@ejemplo.com').fill("barbara.lozada94@gmail.com")
   await page.getByPlaceholder('Ej: 3318482390').fill("3313116979")
@@ -116,16 +122,16 @@ test('SC 08 - User is unable to request phone blocking with invalid IMEI', async
   await page.getByRole('heading', { name: 'IMEI inválido' }).isVisible()
 });
 
-//IMEI llenado sólo con espacio
-test('SC 09 - User is unable to request phone blocking with espace in IMEI', async ({page}) => {
-  await page.getByPlaceholder('Ej: Luis Andres Corona').fill("Bárbara Lozada")
-  await page.getByPlaceholder('Ej: ejemplo@ejemplo.com').fill("barbara.lozada94@gmail.com")
-  await page.getByPlaceholder('Ej: 3318482390').fill("3313116979")
+//Espacio en todos los campos
+test('SC 15 - User is unable to request phone blocking with space in the fields form', async ({page}) => {
+  await page.getByPlaceholder('Ej: Luis Andres Corona').fill(" ")
+  await page.getByPlaceholder('Ej: ejemplo@ejemplo.com').fill(" ")
+  await page.getByPlaceholder('Ej: 3318482390').fill(" ")
   await page.getByPlaceholder('a 17 digítos').fill(" ")
   await page.locator('input[name="identification"]').setInputFiles(path.join(files,'id.jpeg'))
   await page.locator('input[name="billing"]').setInputFiles(path.join(files,'invoice.png'))
   await page.getByRole('combobox').selectOption('Bloquear')
   await page.getByRole('button', { name: 'Enviar' }).click()
   await page.getByText('!').isVisible()
-  await page.getByRole('heading', { name: 'IMEI inválido' }).isVisible()
+  await page.getByRole('heading', { name: 'Correo electrónico inválido' }).isVisible()
 });
